@@ -1,0 +1,35 @@
+<div class="row mt-5" *ngIf="votos.length > 0; else listaVazia">
+  <div class="mx-auto col-md-6 col-sm-11">
+    <p class="fs-2 text-center">Resultado da Votação</p>
+    <table class="table table-light table-striped table-hover text-center">
+      <thead>
+        <tr>
+          <th scope="col">Número</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Votos</th>
+          <th scope="col">Porcentagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let voto of votos">
+          <td>{{voto[0]}}</td>
+          <td>{{voto[1]}}</td>
+          <td>{{voto[2]}}</td>
+          <td>{{voto[3].toFixed(2)}} %</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <ng-container *ngIf="encerrou == true">
+    <p class="fs-5 text-center">Votação encerrada, mais votado foi: {{votos[0][1]}}</p>
+  </ng-container>
+  <ng-container *ngIf="encerrou == false">
+    <p class="fs-5 text-center">Necessário refazer a votação, porcentagem mínima não atingida.</p>
+  </ng-container>
+</div>
+<ng-template #listaVazia>
+  <div class="mx-auto col-md-6 col-sm-11">
+    <p class="fs-2 text-center">Não há votos ainda.</p>
+  </div>
+</ng-template>
