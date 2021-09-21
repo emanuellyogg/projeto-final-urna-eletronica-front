@@ -1,0 +1,24 @@
+.login {
+    height: 100vh;
+    max-width: 500px;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login {
+    margin-top: 30px;
+    padding: 50px;
+}
+
+.btn-login {
+    margin: 15px 0;
+    width: 100%;
+}
+
+h1 {
+    margin-bottom: 50px;
+}
+
+#idDocumento {
+    background-color: #F1F1F1;
+}
