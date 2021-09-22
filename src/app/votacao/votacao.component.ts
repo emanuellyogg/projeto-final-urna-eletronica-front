@@ -25,6 +25,9 @@ export class VotacaoComponent implements OnInit {
       }else{
         this.colocaPlaceHolderNoCPF()
       }
+      if(this.candidatos[0].imgCand == ""){
+        this.ajustarTelaSemImagem()
+      }
     })
   }
 
@@ -33,6 +36,10 @@ export class VotacaoComponent implements OnInit {
   }
 
   public colocaPlaceHolderNoCPF(){
+
+  }
+
+  public ajustarTelaSemImagem(){
 
   }
 
