@@ -1,7 +1,7 @@
-<div class="row mt-5" *ngIf="votos.length > 0; else listaVazia">
+<div class="mx-auto row mt-5" *ngIf="votos.length > 0; else listaVazia">
   <div class="mx-auto col-md-6 col-sm-11">
     <p class="fs-2 text-center">Resultado da Votação</p>
-    <table class="table table-light table-striped table-hover text-center">
+    <table class="table table-light table-striped table-hover text-center rounded shadow">
       <thead>
         <tr>
           <th scope="col">Número</th>
@@ -19,7 +19,6 @@
         </tr>
       </tbody>
     </table>
-
   </div>
   <ng-container *ngIf="encerrou == true">
     <p class="fs-5 text-center">Votação encerrada, mais votado foi: {{votos[0][1]}}</p>
