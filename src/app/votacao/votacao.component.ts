@@ -1,3 +1,4 @@
+import { Voto } from './../../../models/voto.model';
 import { Candidato } from './../../../models/candidato.model';
 import { VotacaoService } from './../votacaoServ/votacao.service';
 import { Config } from './../../../models/config.model';
@@ -12,35 +13,46 @@ import { ThrowStmt } from '@angular/compiler';
 export class VotacaoComponent implements OnInit {
   config: any = []
   candidatos: Candidato[] = []
+  voto: Voto = {
+    value: "",
+    name: ""
+  }
+  candSelecionado: string = ""
+  cpf: string = ""
+  votou: {} = {}
+  msgVoto: string = ""
 
   constructor(private service: VotacaoService) { }
 
   ngOnInit(): void {
     this.service.getConfig().subscribe((configServer: Config) => {
-      console.log(configServer);
       this.config = configServer
       this.candidatos = this.config.resp.candidatos
-      if(this.config.resp.ehAnonima){
-        this.escondeCampoCPF()
-      }else{
-        this.colocaPlaceHolderNoCPF()
-      }
-      if(this.candidatos[0].imgCand == ""){
-        this.ajustarTelaSemImagem()
-      }
+      this.cpf = ""
     })
-  }
-
-  public escondeCampoCPF(){
-
   }
 
   public colocaPlaceHolderNoCPF(){
 
   }
 
-  public ajustarTelaSemImagem(){
+  public votarEmBranco(){
+    let timestamp = new Date()
+    this.voto = {
+      cpf: "",
+      value: "00",
+      name: "branco",
+      timestamp: timestamp
+    }
+    this.votou = this.service.postVoto(this.voto).subscribe(
+      response => {
+        if(response.Status == "200"){
+          this.votou = true
+        }
+        this.msgVoto = response.Mensagem
+      }
+    )
+    console.log(this.votou)
 
   }
-
 }
