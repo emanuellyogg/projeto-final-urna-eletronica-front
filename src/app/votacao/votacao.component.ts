@@ -20,17 +20,12 @@ export class VotacaoComponent implements OnInit {
       console.log(configServer);
       this.config = configServer
       this.candidatos = this.config.resp.candidatos
-      this.criarDataList()
       if(this.config.resp.ehAnonima){
         this.escondeCampoCPF()
       }else{
         this.colocaPlaceHolderNoCPF()
       }
     })
-  }
-
-  public criarDataList(){
-
   }
 
   public escondeCampoCPF(){

@@ -6,10 +6,11 @@
         <input class="form-control text-center my-3" type="text" name="nmCPF" id="idCPF" placeholder="000.000.000-00">
         <div class="form-group my-5">
           <label class="text-center p-2 w-100" for="idCandidato ">Selecione a opção desejada:</label>
-          <input class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato">
-          <datalist id="candidatos">
-            <option value="10">candidato exemplo</option>
-          </datalist>
+          <select class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato">
+            <option value="" selected disabled hidden></option>
+            <option *ngFor="let candidato of candidatos" value="{{candidato.numCand}}">{{candidato.numCand}} - {{candidato.nomeCand}}</option>
+            <option value="null">0 - ANULAR VOTO</option>
+          </select>
         </div>
       </div>
       <div class="text-center col border rounded p-3 m-3">
