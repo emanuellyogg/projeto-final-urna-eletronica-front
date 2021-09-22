@@ -32,11 +32,11 @@ export class VotacaoComponent implements OnInit {
     })
   }
 
-  public colocaPlaceHolderNoCPF(){
+  public colocaPlaceHolderNoCPF() {
 
   }
 
-  public votarEmBranco(){
+  public votarEmBranco() {
     let timestamp = new Date()
     this.voto = {
       cpf: "",
@@ -44,15 +44,42 @@ export class VotacaoComponent implements OnInit {
       name: "branco",
       timestamp: timestamp
     }
-    this.votou = this.service.postVoto(this.voto).subscribe(
+    this.enviaVoto()
+  }
+
+  public votar(){
+    let timestamp = new Date()
+    this.voto = {
+      cpf: "09667961858",
+      value: this.candSelecionado,
+      name: this.buscaNomeCandidato(),
+      timestamp: timestamp
+    }
+    this.enviaVoto()
+  }
+
+  private enviaVoto() {
+    console.log(this.voto);
+    this.service.postVoto(this.voto).subscribe(
       response => {
-        if(response.Status == "200"){
+        if (response.Status == "200") {
           this.votou = true
         }
         this.msgVoto = response.Mensagem
       }
     )
-    console.log(this.votou)
+  }
 
+  private buscaNomeCandidato(){
+    let nome:string = ""
+    for(let candidato of this.candidatos){
+      if(candidato.numCand == this.candSelecionado){
+        nome = candidato.nomeCand
+      }
+    }
+    if(nome == ""){
+      nome = "null"
+    }
+    return nome
   }
 }
