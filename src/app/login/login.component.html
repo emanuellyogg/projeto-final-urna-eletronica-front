@@ -3,10 +3,10 @@
         <h1 class="text-center">Login Votação</h1>
         <div class="form-group">
             <label for="idDocumento" class="form-label">Informe seu CPF</label>
-            <input type="number" name="nmDocumento" id="idDocumento" placeholder="Nº do documento" class="form-control" min="0">
+            <input type="text" name="nmDocumento" id="idDocumento" placeholder="Nº do documento" class="form-control" min="0" [(ngModel)]="inputUser">
             <small class="text-secondary">Digite apenas números</small>
             <div>
-                <button class="btn btn-success btn-login">Login</button>
+                <button class="btn btn-success btn-login" (click)="logar()">Login</button>
             </div>
         </div>
         <div>
