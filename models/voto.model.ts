@@ -1,6 +1,6 @@
 export interface Voto {
-  cpf?: number;
-  value: number;
+  cpf?: string;
+  value: string;
   name: string;
   timestamp?: Date;
 }

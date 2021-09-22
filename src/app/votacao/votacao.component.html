@@ -11,7 +11,7 @@
         </ng-container>
         <div class="form-group my-5">
           <label class="text-center p-2 w-100" for="idCandidato ">Selecione a opção desejada:</label>
-          <select class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato">
+          <select class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato" [(ngModel)]="candSelecionado">
             <option value="" selected disabled hidden></option>
             <option *ngFor="let candidato of candidatos" value="{{candidato.numCand}}">{{candidato.numCand}} - {{candidato.nomeCand}}</option>
             <option value="null">0 - ANULAR VOTO</option>
@@ -30,9 +30,9 @@
       </ng-container>
     </div>
     <div class="text-center my-2">
-      <button class="btn border rounded mx-2 w-25">Branco</button>
+      <button (click)="votarEmBranco()" class="btn border rounded mx-2 w-25">Branco</button>
       <button class="btn border rounded btn-danger mx-2 w-25">Corrigir</button>
-      <button class="btn border rounded btn-success mx-2 w-25">Confirma</button>
+      <button (click)="votar()" class="btn border rounded btn-success mx-2 w-25">Confirma</button>
     </div>
   </div>
   <div class="col"></div>
