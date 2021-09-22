@@ -50,7 +50,7 @@ export class VotacaoComponent implements OnInit {
   public votar(){
     let timestamp = new Date()
     this.voto = {
-      cpf: "09667961858",
+      cpf: "09657961858",
       value: this.candSelecionado,
       name: this.buscaNomeCandidato(),
       timestamp: timestamp
