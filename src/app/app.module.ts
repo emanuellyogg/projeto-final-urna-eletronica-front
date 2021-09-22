@@ -7,12 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { VotacaoComponent } from './votacao/votacao.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ApuracaoComponent
+    ApuracaoComponent,
+    VotacaoComponent
   ],
   imports: [
     BrowserModule,
