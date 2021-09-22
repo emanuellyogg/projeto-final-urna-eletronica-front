@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col"></div>
+  <div class="col-6 rounded shadow mt-5 border p-4">
+    <div class="row">
+      <div class="col my-auto">
+        <input class="form-control text-center my-3" type="text" name="nmCPF" id="idCPF" placeholder="000.000.000-00">
+        <div class="form-group my-5">
+          <label class="text-center p-2 w-100" for="idCandidato ">Selecione a opção desejada:</label>
+          <input class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato">
+          <datalist id="candidatos">
+            <option value="10">candidato exemplo</option>
+          </datalist>
+        </div>
+      </div>
+      <div class="text-center col border rounded p-3 m-3">
+        <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
+          class="my-2 fs-4">Nome do Candidato</output><br>
+        <img class="img-fluid border" src="../../assets/img/padrao.png" id="FotoCandidato">
+      </div>
+    </div>
+    <div class="text-center my-2">
+      <button class="btn border rounded mx-2 w-25">Branco</button>
+      <button class="btn border rounded btn-danger mx-2 w-25">Corrigir</button>
+      <button class="btn border rounded btn-success mx-2 w-25">Confirma</button>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>
