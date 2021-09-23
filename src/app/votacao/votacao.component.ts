@@ -11,6 +11,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./votacao.component.css']
 })
 export class VotacaoComponent implements OnInit {
+  temimagem: boolean = false
   config: any = []
   candidatos: Candidato[] = []
   candSelect: string = ""
@@ -35,6 +36,11 @@ export class VotacaoComponent implements OnInit {
     this.service.getConfig().subscribe((configServer: Config) => {
       this.config = configServer
       this.candidatos = this.config.resp.candidatos
+      for(let candidato of this.candidatos){
+        if(candidato.imgCand != ''){
+          this.temimagem = true
+        }
+      }
       this.cpf = ""
     })
   }
@@ -66,13 +72,9 @@ export class VotacaoComponent implements OnInit {
   }
 
   private enviaVoto() {
-    console.log(this.voto);
     this.service.postVoto(this.voto).subscribe(
       response => {
-        if (response.Status == "200") {
-          this.votou = true
-        }
-        this.msgVoto = response.Mensagem
+        this.votou = response
       }
     )
   }
@@ -80,21 +82,21 @@ export class VotacaoComponent implements OnInit {
   private buscaCandidato() {
     let cand: Candidato = {
       nomeCand:"null",
-      numCand: "null"
+      numCand: "null",
+      imgCand: "",
+      descCand: ""
     }
     for (let candidato of this.candidatos) {
       if (candidato.numCand == this.candSelect) {
         cand = candidato
       }
     }
-
     return cand
   }
 
   public atualizaCandSelecionado(){
 
     this.candSelecionado = this.buscaCandidato()
-    console.log(this.candSelecionado);
 
   }
 
