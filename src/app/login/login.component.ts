@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   public finalVotacao: any;
   public horaAtual: any;
   public horaValida: any;
+  public votacaoInic: boolean = true;
 
   constructor(private service: LoginService, private router: Router) {}
 
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
     } else {
       if (this.horaAtual < this.inicioVotacao) {
         this.horaValida = 'naoIniciada';
+        this.votacaoInic = false;
       }
       if (this.horaAtual > this.finalVotacao) {
         this.horaValida = 'finalizada';
