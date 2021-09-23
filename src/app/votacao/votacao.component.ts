@@ -66,13 +66,9 @@ export class VotacaoComponent implements OnInit {
   }
 
   private enviaVoto() {
-    console.log(this.voto);
     this.service.postVoto(this.voto).subscribe(
       response => {
-        if (response.Status == "200") {
-          this.votou = true
-        }
-        this.msgVoto = response.Mensagem
+        this.votou = response
       }
     )
   }
@@ -80,21 +76,21 @@ export class VotacaoComponent implements OnInit {
   private buscaCandidato() {
     let cand: Candidato = {
       nomeCand:"null",
-      numCand: "null"
+      numCand: "null",
+      imgCand: "",
+      descCand: ""
     }
     for (let candidato of this.candidatos) {
       if (candidato.numCand == this.candSelect) {
         cand = candidato
       }
     }
-
     return cand
   }
 
   public atualizaCandSelecionado(){
 
     this.candSelecionado = this.buscaCandidato()
-    console.log(this.candSelecionado);
 
   }
 
