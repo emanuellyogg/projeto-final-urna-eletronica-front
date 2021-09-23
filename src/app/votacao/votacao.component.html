@@ -26,7 +26,12 @@
         <div class="text-center col border rounded p-3 m-3" id="idDivOutput">
           <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
             class="my-2 fs-4">Nome do Candidato</output><br>
-          <img class="img-fluid border" src="../../assets/img/padrao.png" id="FotoCandidato">
+          <ng-container *ngIf="candSelecionado.imgCand != ''">
+            <img class="img-fluid border" src="{{candSelecionado.imgCand}}" id="FotoCandidato">
+          </ng-container>
+          <ng-container *ngIf="candSelecionado.imgCand == ''">
+            <img class="img-fluid border" src="../../assets/img/padrao.png" id="FotoCandidato">
+          </ng-container>
           <ng-container *ngIf="candidatos[0]?.descCand != ''"><p class="text-center">{{candSelecionado.descCand}}</p></ng-container>
         </div>
       </ng-container>
