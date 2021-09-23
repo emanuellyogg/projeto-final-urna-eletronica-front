@@ -1,5 +1,5 @@
-<div class="container login">
-    <form class="form-login">
+<div class="container login d-flex align-items-center">
+    <form class="form-login shadow">
         <h1 class="text-center">Login Votação</h1>
         <div class="form-group">
             <label for="idDocumento" class="form-label">Informe seu CPF</label>
@@ -12,7 +12,7 @@
                     disabled>Login</button>
             </div>
         </div>
-        <div>
+        <div class="login-text">
             <p *ngIf="horaValida == 'valida'" class="text-center">A votação está disponível no período de {{
                 inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao |
                 date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}, logo após este período estará disponível os
