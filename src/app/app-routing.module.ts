@@ -5,9 +5,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { ApuracaoComponent } from "./apuracao/apuracao.component";
 
 export const routes: Routes = [
-  { path: "", component: LoginComponent},
+  { path: "", redirectTo: "login", pathMatch: "full"},
+  { path: "login", component: LoginComponent},
   { path: "resultado", component: ApuracaoComponent },
-  { path: "votacao", component: VotacaoComponent}
+  { path: "votacao", component: VotacaoComponent},
+  { path: "**", redirectTo: "login"}
 ]
 
 @NgModule({
