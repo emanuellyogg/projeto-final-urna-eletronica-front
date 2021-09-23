@@ -11,7 +11,8 @@
         </ng-container>
         <div class="form-group my-5">
           <label class="text-center p-2 w-100" for="idCandidato ">Selecione a opção desejada:</label>
-          <select class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato" [(ngModel)]="candSelect" (ngModelChange)="atualizaCandSelecionado()">
+          <select class="form-control text-center" list="candidatos" name="nmCandidato" id="idCandidato"
+          [(ngModel)]="candSelect" (ngModelChange)="atualizaCandSelecionado()">
             <option value="" selected disabled hidden></option>
             <option *ngFor="let candidato of candidatos" value="{{candidato.numCand}}">{{candidato.numCand}} - {{candidato.nomeCand}}</option>
             <option value="null">0 - ANULAR VOTO</option>
