@@ -1,9 +1,12 @@
+import { StatusVoto } from './../../../models/confirmaVoto.model';
+import { LoginService } from '../loginServ/login.service';
 import { Voto } from './../../../models/voto.model';
 import { Candidato } from './../../../models/candidato.model';
 import { VotacaoService } from './../votacaoServ/votacao.service';
 import { Config } from './../../../models/config.model';
 import { Component, OnInit } from '@angular/core';
 import { ThrowStmt } from '@angular/compiler';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-votacao',
@@ -27,10 +30,10 @@ export class VotacaoComponent implements OnInit {
 
   }
   cpf: string = ""
-  votou: {} = {}
+  votou: StatusVoto = {}
   msgVoto: string = ""
 
-  constructor(private service: VotacaoService) { }
+  constructor(private service: VotacaoService, private login: LoginService) { }
 
   ngOnInit(): void {
     this.service.getConfig().subscribe((configServer: Config) => {
@@ -63,11 +66,13 @@ export class VotacaoComponent implements OnInit {
   public votar() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "09657961858",
+      cpf: "",
       value: this.candSelect,
       name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
     }
+    console.log(this.voto);
+
     this.enviaVoto()
   }
 
@@ -75,8 +80,46 @@ export class VotacaoComponent implements OnInit {
     this.service.postVoto(this.voto).subscribe(
       response => {
         this.votou = response
+        this.mostrarModal()
+        console.log(this.votou);
       }
     )
+
+
+
+  }
+
+  private mostrarModal(){
+    if (this.votou.status) {
+      Swal.fire({
+
+        icon: 'success',
+
+        title: 'Voto computado com sucesso!',
+
+        text: 'Para acessar o resultado, faça login a partir de' + this.montaDataFim(),
+
+        showConfirmButton: true
+      })
+
+    }else{
+      Swal.fire({
+
+        icon: 'error',
+
+        title: 'Erro ao votar',
+
+        text: this.votou.mensagem,
+
+        showConfirmButton: true
+      })
+    }
+
+  }
+
+  private montaDataFim(){
+    let data = new Date(this.config.resp.finalVotacao)
+    return data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " às " + data.getHours() + ":" + data.getMinutes()
   }
 
   private buscaCandidato() {
