@@ -19,8 +19,10 @@ export class VotacaoComponent implements OnInit {
   }
   candSelecionado: string = ""
   cpf: string = ""
-  votou: {} = {}
-  msgVoto: string = ""
+  confirmacaoVoto = {
+    status: "",
+    mensagem: ""
+  }
 
   constructor(private service: VotacaoService) { }
 
@@ -47,7 +49,7 @@ export class VotacaoComponent implements OnInit {
     this.enviaVoto()
   }
 
-  public votar(){
+  public votar() {
     let timestamp = new Date()
     this.voto = {
       cpf: "09657961858",
@@ -62,22 +64,20 @@ export class VotacaoComponent implements OnInit {
     console.log(this.voto);
     this.service.postVoto(this.voto).subscribe(
       response => {
-        if (response.Status == "200") {
-          this.votou = true
-        }
-        this.msgVoto = response.Mensagem
+        this.confirmacaoVoto.status = response.Status
+        this.confirmacaoVoto.mensagem = response.Mensagem
       }
     )
   }
 
-  private buscaNomeCandidato(){
-    let nome:string = ""
-    for(let candidato of this.candidatos){
-      if(candidato.numCand == this.candSelecionado){
+  private buscaNomeCandidato() {
+    let nome: string = ""
+    for (let candidato of this.candidatos) {
+      if (candidato.numCand == this.candSelecionado) {
         nome = candidato.nomeCand
       }
     }
-    if(nome == ""){
+    if (nome == "") {
       nome = "null"
     }
     return nome
