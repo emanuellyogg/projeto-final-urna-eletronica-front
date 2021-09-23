@@ -16,7 +16,11 @@
             <option value="" selected disabled hidden></option>
             <option *ngFor="let candidato of candidatos" value="{{candidato.numCand}}">{{candidato.numCand}} - {{candidato.nomeCand}}</option>
             <option value="null">0 - ANULAR VOTO</option>
+
           </select>
+          <ng-container *ngIf="candidatos[0].imgCand == ''">
+            <ng-container *ngIf="candidatos[0].descCand != ''"><p class="text-center my-3 fs-5">{{candSelecionado.descCand}}</p></ng-container>
+          </ng-container>
         </div>
       </div>
       <ng-container *ngIf="candidatos[0].imgCand != ''">
@@ -24,7 +28,8 @@
           <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
             class="my-2 fs-4">Nome do Candidato</output><br>
           <img class="img-fluid border" src="../../assets/img/padrao.png" id="FotoCandidato">
-          <ng-container *ngIf="candidatos[0].descCand != ''"><p>{{candSelecionado.descCand}}</p></ng-container>
+          <ng-container *ngIf="candidatos[0].descCand != ''"><p class="text-center">{{candSelecionado.descCand}}</p></ng-container>
+          
 
         </div>
       </ng-container>
@@ -34,7 +39,7 @@
     </div>
     <div class="text-center my-2">
       <button (click)="votarEmBranco()" class="btn border rounded mx-2 w-25">Branco</button>
-      <button class="btn border rounded btn-danger mx-2 w-25">Corrigir</button>
+      <button (click)="limpaSelect()"class="btn border rounded btn-danger mx-2 w-25">Corrige</button>
       <button (click)="votar()" class="btn border rounded btn-success mx-2 w-25">Confirma</button>
     </div>
   </div>
