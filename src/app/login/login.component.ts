@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Config } from 'models/config.model';
 import { LoginService } from '../loginServ/login.service';
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   public horaAtual: any;
   public horaValida: any;
 
-  constructor(private service: LoginService) {}
+  constructor(private service: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.service.getConfig().subscribe((configServer: Config) => {
@@ -57,7 +58,6 @@ export class LoginComponent implements OnInit {
       console.log(user);
 
       this.validarUser()
-
     });
 
   }
@@ -66,28 +66,21 @@ export class LoginComponent implements OnInit {
 
     if (this.user == 'invalido') {
       console.log('Usuário inválido');
-
       return;
     }
 
-    console.log("passou aqui");
     this.chamarTelas()
-
   }
 
   chamarTelas() {
 
     if (this.horaValida == 'valida') {
-      console.log("entrou no valida");
+      this.router.navigateByUrl("votacao");
       return
 
     } else if (this.horaValida == 'finalizada') {
-      console.log("entrou no finalizada");
+      this.router.navigateByUrl("resultado");
       return
-
-    } else {
-      console.log("permanece na mesma pag");
     }
-
   }
 }
