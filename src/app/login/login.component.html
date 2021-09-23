@@ -6,13 +6,14 @@
             <input type="text" name="nmDocumento" id="idDocumento" placeholder="Nº do documento" class="form-control" min="0" [(ngModel)]="inputUser">
             <small class="text-secondary">Digite apenas números</small>
             <div>
-                <button class="btn btn-success btn-login" (click)="logar()">Login</button>
+                <button *ngIf="votacaoInic == true" class="btn btn-success btn-login" (click)="logar()">Login</button>
+                <button *ngIf="votacaoInic == false" class="btn btn-success btn-login" (click)="logar()" disabled>Login</button>
             </div>
         </div>
         <div>
-            <p *ngIf="horaValida == 'valida'" class="text-center">A votação estará disponível no período de {{ inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao | date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}, logo após este período estará disponível os resultados.</p>
+            <p *ngIf="horaValida == 'valida'" class="text-center">A votação está disponível no período de {{ inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao | date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}, logo após este período estará disponível os resultados.</p>
             <p *ngIf="horaValida == 'finalizada'"class="text-center">Votação finalizada, faça login para acessar os resultados.</p>
-            <p *ngIf="horaValida == 'naoIniciada'"class="text-center">Votação não iniciada! A votação estará disponível no período de {{ inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao | date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}.</p>
+            <p *ngIf="horaValida == 'naoIniciada'"class="text-center">Votação não disponível! A votação estará disponível no período de {{ inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao | date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}.</p>
         </div>
     </form>
 </div>
