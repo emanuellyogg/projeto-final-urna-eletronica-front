@@ -71,6 +71,23 @@ export class LoginComponent implements OnInit {
     }
 
     console.log("passou aqui");
+    this.chamarTelas()
+
+  }
+
+  chamarTelas() {
+
+    if (this.horaValida == 'valida') {
+      console.log("entrou no valida");
+      return
+
+    } else if (this.horaValida == 'finalizada') {
+      console.log("entrou no finalizada");
+      return
+
+    } else {
+      console.log("permanece na mesma pag");
+    }
 
   }
 }
