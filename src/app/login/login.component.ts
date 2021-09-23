@@ -60,6 +60,7 @@ export class LoginComponent implements OnInit {
 
       console.log(user);
 
+
       this.validarUser()
     });
 
@@ -72,6 +73,8 @@ export class LoginComponent implements OnInit {
       this.alertUserInvalido()
       return;
     }
+
+    this.service.receberUser(this.user)
 
     this.chamarTelas()
   }
