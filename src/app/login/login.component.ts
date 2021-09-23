@@ -13,30 +13,38 @@ export class LoginComponent implements OnInit {
   public config: any = []
   public inicioVotacao: any 
   public finalVotacao: any
+  public horaAtual: any
+  public horaValida: any
 
   constructor(private service: LoginService) {}
 
   ngOnInit(): void {
-    
-    this.service.getConfig().subscribe((configServer: Config) => {
+      this.service.getConfig().subscribe((configServer: Config) => {
       this.config = configServer
-
-      console.log(this.config);
-      console.log(typeof(this.config.resp.inicioVotacao));
-      console.log(this.config.resp.finalVotacao);
 
       this.inicioVotacao = new Date(this.config.resp.inicioVotacao) 
       this.finalVotacao = new Date(this.config.resp.finalVotacao) 
 
-      console.log(this.inicioVotacao);
-      console.log(this.finalVotacao);
-      
-
+      this.validarHorarioVotacao()
     })
   }
 
-  logar() {
+  validarHorarioVotacao() {
+    this.horaAtual = new Date()
 
+    if (this.horaAtual > this.inicioVotacao && this.horaAtual < this.finalVotacao){
+      this.horaValida = 'valida'      
+    } else {
+      if (this.horaAtual < this.inicioVotacao){
+        this.horaValida = 'naoIniciada'
+      }
+      if (this.horaAtual > this.finalVotacao){
+        this.horaValida = 'finalizada'
+      }
+    }
+  }
+
+  logar() {
     const user = {nmUser: this.inputUser}
 
     this.service.getUser(user).subscribe((userServer) => {
