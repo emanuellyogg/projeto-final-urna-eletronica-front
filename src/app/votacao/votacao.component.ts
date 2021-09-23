@@ -13,11 +13,18 @@ import { ThrowStmt } from '@angular/compiler';
 export class VotacaoComponent implements OnInit {
   config: any = []
   candidatos: Candidato[] = []
+  candSelect: string = ""
   voto: Voto = {
     value: "",
     name: ""
   }
-  candSelecionado: string = ""
+  candSelecionado: Candidato = {
+    numCand: "",
+    nomeCand: "",
+    imgCand: "",
+    descCand: ""
+
+  }
   cpf: string = ""
   votou: {} = {}
   msgVoto: string = ""
@@ -47,12 +54,12 @@ export class VotacaoComponent implements OnInit {
     this.enviaVoto()
   }
 
-  public votar(){
+  public votar() {
     let timestamp = new Date()
     this.voto = {
       cpf: "09657961858",
-      value: this.candSelecionado,
-      name: this.buscaNomeCandidato(),
+      value: this.candSelect,
+      name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
     }
     this.enviaVoto()
@@ -70,16 +77,26 @@ export class VotacaoComponent implements OnInit {
     )
   }
 
-  private buscaNomeCandidato(){
-    let nome:string = ""
-    for(let candidato of this.candidatos){
-      if(candidato.numCand == this.candSelecionado){
-        nome = candidato.nomeCand
+  private buscaCandidato() {
+    let cand: Candidato = {
+      nomeCand:"null",
+      numCand: "null"
+    }
+    for (let candidato of this.candidatos) {
+      if (candidato.numCand == this.candSelect) {
+        cand = candidato
       }
     }
-    if(nome == ""){
-      nome = "null"
-    }
-    return nome
+
+    return cand
   }
+
+  public atualizaCandSelecionado(){
+
+    this.candSelecionado = this.buscaCandidato()
+    console.log(this.candSelecionado);
+
+  }
+
+
 }
