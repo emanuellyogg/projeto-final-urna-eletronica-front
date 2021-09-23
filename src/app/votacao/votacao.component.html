@@ -19,6 +19,10 @@
           </select>
           <ng-container *ngIf="!temimagem">
             <ng-container *ngIf="candidatos[0]?.descCand != ''"><p class="text-center my-3 fs-5">{{candSelecionado.descCand}}</p></ng-container>
+            <ng-container *ngIf="candSelecionado.nomeCand == 'null'">
+              <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
+              class="my-2 fs-4">Voto nulo selecionado. Ao clicar em confirmar, você anulará seu voto.</output><br>
+            </ng-container>
           </ng-container>
         </div>
       </div>
