@@ -2,7 +2,7 @@
   <div class="col"></div>
   <div class="col-6 rounded shadow mt-5 border p-4" id="idDivQuadro">
     <div class="row">
-      <ng-container *ngIf="candidatos[0]?.imgCand==''">
+      <ng-container *ngIf="!temimagem">
         <div class="col-3"></div>
       </ng-container>
       <div class="col my-auto" id="idDivInputs">
@@ -17,25 +17,35 @@
             <option *ngFor="let candidato of candidatos" value="{{candidato.numCand}}">{{candidato.numCand}} - {{candidato.nomeCand}}</option>
             <option value="null">0 - ANULAR VOTO</option>
           </select>
-          <ng-container *ngIf="candidatos[0]?.imgCand == ''">
+          <ng-container *ngIf="!temimagem">
             <ng-container *ngIf="candidatos[0]?.descCand != ''"><p class="text-center my-3 fs-5">{{candSelecionado.descCand}}</p></ng-container>
           </ng-container>
         </div>
       </div>
-      <ng-container *ngIf="candidatos[0]?.imgCand != ''">
+      <ng-container *ngIf="temimagem">
         <div class="text-center col border rounded p-3 m-3" id="idDivOutput">
-          <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
-            class="my-2 fs-4">Nome do Candidato</output><br>
-          <ng-container *ngIf="candSelecionado.imgCand != ''">
-            <img class="img-fluid border" src="{{candSelecionado.imgCand}}" id="FotoCandidato">
+          <ng-container *ngIf="candSelecionado.nomeCand == ''">
+            <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
+            class="my-2 fs-4">Selecione uma opção para votar.</output><br>
           </ng-container>
-          <ng-container *ngIf="candSelecionado.imgCand == ''">
-            <img class="img-fluid border" src="../../assets/img/padrao.png" id="FotoCandidato">
+          <ng-container *ngIf="candSelecionado.nomeCand == 'null'">
+            <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
+            class="my-2 fs-4">Voto nulo selecionado. Ao clicar em confirmar, você anulará seu voto.</output><br>
           </ng-container>
-          <ng-container *ngIf="candidatos[0]?.descCand != ''"><p class="text-center">{{candSelecionado.descCand}}</p></ng-container>
+          <ng-container *ngIf="candSelecionado.nomeCand != 'null' && candSelecionado.nomeCand != ''">
+            <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
+              class="my-2 fs-4">{{candSelecionado.nomeCand}}</output><br>
+            <ng-container *ngIf="candSelecionado.imgCand != ''">
+              <img class="img-fluid border" src="{{candSelecionado.imgCand}}" id="FotoCandidato">
+            </ng-container>
+            <ng-container *ngIf="candSelecionado.imgCand == ''">
+              <img class="img-fluid border" src="../../assets/img/default_profile.png" id="FotoCandidato">
+            </ng-container>
+            <ng-container *ngIf="candidatos[0]?.descCand != ''"><p class="text-center">{{candSelecionado.descCand}}</p></ng-container>
+          </ng-container>
         </div>
       </ng-container>
-      <ng-container *ngIf="candidatos[0]?.imgCand==''">
+      <ng-container *ngIf="!temimagem">
         <div class="col-3"></div>
       </ng-container>
     </div>

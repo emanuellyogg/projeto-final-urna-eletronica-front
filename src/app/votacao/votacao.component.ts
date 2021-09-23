@@ -11,6 +11,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./votacao.component.css']
 })
 export class VotacaoComponent implements OnInit {
+  temimagem: boolean = false
   config: any = []
   candidatos: Candidato[] = []
   candSelect: string = ""
@@ -35,6 +36,11 @@ export class VotacaoComponent implements OnInit {
     this.service.getConfig().subscribe((configServer: Config) => {
       this.config = configServer
       this.candidatos = this.config.resp.candidatos
+      for(let candidato of this.candidatos){
+        if(candidato.imgCand != ''){
+          this.temimagem = true
+        }
+      }
       this.cpf = ""
     })
   }
