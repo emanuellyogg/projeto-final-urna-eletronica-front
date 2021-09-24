@@ -40,7 +40,9 @@ Para acessar o board do projeto [clique aqui](https://senju.atlassian.net/jira/s
 
 Pré requisitos
 ==========
-Instalar o Node.js. Para mais informações de como instalar [clique aqui](https://nodejs.org/en/); <br>
+Instalar o Node.js. Para mais informações de como instalar [clique aqui](https://nodejs.org/en/);
+
+
 Instalar o Angular CLI. Para fazer e intalação basta ter o `npm` instalado, e executar o comando:
 ```sh
 npm install -g @angular/cli
@@ -52,14 +54,19 @@ npm install -g @angular/cli
 
 Utilizando nesse formato, as alterações serão executadas automaticamente e refletidas na aplicação.
 
-Para fazer e intalação basta clonar o projeto e dentro da pasta executar o comando:
+Para fazer e intalação basta clonar o projeto: 
+```sh
+git clone https://emanuellyogg@bitbucket.org/emanuellyogg/urna-eletronica-frontend.git
+```
+
+Depois de clonar, dentro da pasta do projeto, executar o comando:
 ```sh
 npm install
 ```
-O projeto pode ser executado da seguinte forma:
 
 Executar local
 --------------
+Na pasta raiz do projeto, execute o comando:
 ```sh
 ng serve
 ```
