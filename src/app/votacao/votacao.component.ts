@@ -45,18 +45,14 @@ export class VotacaoComponent implements OnInit {
           this.temimagem = true
         }
       }
-      this.cpf = ""
+      this.cpf = this.login.userId
     })
-  }
-
-  public colocaPlaceHolderNoCPF() {
-
   }
 
   public votarEmBranco() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "125",
+      cpf: this.cpf,
       value: "00",
       name: "branco",
       timestamp: timestamp
@@ -67,7 +63,7 @@ export class VotacaoComponent implements OnInit {
   public votar() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "125",
+      cpf: this.cpf,
       value: this.candSelect,
       name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
