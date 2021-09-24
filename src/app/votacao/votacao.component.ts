@@ -151,6 +151,7 @@ export class VotacaoComponent implements OnInit {
   public limpaSelect(){
 
     this.candSelect = ""
+    this.atualizaCandSelecionado() 
   }
 
 
