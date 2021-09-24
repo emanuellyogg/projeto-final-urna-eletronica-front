@@ -13,15 +13,23 @@
             </div>
         </div>
         <div class="login-text">
-            <p *ngIf="horaValida == 'valida'" class="text-center">A votação está disponível no período de {{
-                inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao |
-                date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}, logo após este período estará disponível os
-                resultados.</p>
-            <p *ngIf="horaValida == 'finalizada'" class="text-center">Votação finalizada, faça login para acessar os
-                resultados.</p>
-            <p *ngIf="horaValida == 'naoIniciada'" class="text-center">Votação não disponível! A votação estará
-                disponível no período de {{ inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }}
-                até {{ finalVotacao | date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}.</p>
+            <div *ngIf="horaValida == 'valida'">
+                <p class="text-success text-center fw-bold">A votação está disponível.</p>
+                <p class="text-center">Período de votação: <span class="fw-bold">{{
+                    inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }} até {{ finalVotacao |
+                    date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}</span>, logo após este período estará disponível os
+                    resultados</p>
+            </div>
+            <div *ngIf="horaValida == 'finalizada'" >
+                <p class="text-center fw-bold">Votação finalizada</p>
+                <p class="text-center">Faça login para acessar os resultados.</p>
+            </div>
+            <div *ngIf="horaValida == 'naoIniciada'">
+                <p class="text-danger fw-bold text-center">Votação não disponível!</p>
+                <p  class="text-center">A votação estará
+                    disponível no período de <span class="fw-bold">{{ inicioVotacao | date:"dd/MM/YYYY" }} às {{ inicioVotacao | date:"H:mm" }}
+                    até {{ finalVotacao | date:"dd/MM/YYYY" }} às {{ finalVotacao | date:"H:mm" }}</span>.</p>
+            </div>
         </div>
     </form>
 </div>
