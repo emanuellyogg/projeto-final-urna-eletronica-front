@@ -122,7 +122,14 @@ export class VotacaoComponent implements OnInit {
 
   private montaDataFim(){
     let data = new Date(this.config.resp.finalVotacao)
-    return data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " às " + data.getHours() + ":" + data.getMinutes()
+    let minutos: any = String(data.getMinutes())
+    if(minutos == "0"){
+      minutos = String(minutos) + "0"
+    }else if(minutos.length == 1){
+      minutos = "0" + String(minutos)
+    }
+    console.log(minutos.length);
+    return `${data.getDate()}/${Number(data.getMonth())+1}/${data.getFullYear()} às ${data.getHours()}:${minutos}h`
   }
 
   private buscaCandidato() {
