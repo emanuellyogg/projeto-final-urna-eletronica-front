@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { VotacaoComponent } from './votacao/votacao.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { VotacaoComponent } from './votacao/votacao.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SweetAlert2Module
   ],
   providers: [],
   bootstrap: [AppComponent]

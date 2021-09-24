@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Config } from 'models/config.model';
+import Swal from 'sweetalert2';
 import { LoginService } from '../loginServ/login.service';
 
 @Component({
@@ -59,6 +60,7 @@ export class LoginComponent implements OnInit {
 
       console.log(user);
 
+
       this.validarUser()
     });
 
@@ -68,13 +70,29 @@ export class LoginComponent implements OnInit {
 
     if (this.user == 'invalido') {
       console.log('Usuário inválido');
+      this.alertUserInvalido()
       return;
     }
+
+    this.service.receberUser(this.user)
 
     this.chamarTelas()
   }
 
+  alertUserInvalido(){
+    Swal.fire({
+      title: 'Erro!',
+      text: 'Usuário inválido',
+      icon: 'error',
+      showCancelButton: true,
+      cancelButtonText: `Fechar`,
+      cancelButtonColor: '#d33',
+      showConfirmButton: false
+    })
+  }
+
   chamarTelas() {
+
 
     if (this.horaValida == 'valida') {
       this.router.navigateByUrl("votacao");

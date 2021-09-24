@@ -1,9 +1,12 @@
+import { StatusVoto } from './../../../models/confirmaVoto.model';
+import { LoginService } from '../loginServ/login.service';
 import { Voto } from './../../../models/voto.model';
 import { Candidato } from './../../../models/candidato.model';
 import { VotacaoService } from './../votacaoServ/votacao.service';
 import { Config } from './../../../models/config.model';
 import { Component, OnInit } from '@angular/core';
-import { ThrowStmt } from '@angular/compiler';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-votacao',
@@ -11,6 +14,7 @@ import { ThrowStmt } from '@angular/compiler';
   styleUrls: ['./votacao.component.css']
 })
 export class VotacaoComponent implements OnInit {
+  temimagem: boolean = false
   config: any = []
   candidatos: Candidato[] = []
   candSelect: string = ""
@@ -26,29 +30,27 @@ export class VotacaoComponent implements OnInit {
 
   }
   cpf: string = ""
-  confirmacaoVoto = {
-    status: "",
-    mensagem: ""
-  }
+  votou: StatusVoto = {}
 
-  constructor(private service: VotacaoService) { }
+  constructor(private service: VotacaoService, private login: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getConfig().subscribe((configServer: Config) => {
       this.config = configServer
       this.candidatos = this.config.resp.candidatos
-      this.cpf = ""
+      for(let candidato of this.candidatos){
+        if(candidato.imgCand != ''){
+          this.temimagem = true
+        }
+      }
+      this.cpf = this.login.userId
     })
-  }
-
-  public colocaPlaceHolderNoCPF() {
-
   }
 
   public votarEmBranco() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "",
+      cpf: this.cpf,
       value: "00",
       name: "branco",
       timestamp: timestamp
@@ -59,49 +61,95 @@ export class VotacaoComponent implements OnInit {
   public votar() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "09657961858",
+      cpf: this.cpf,
       value: this.candSelect,
       name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
     }
+    console.log(this.voto);
+
     this.enviaVoto()
   }
 
   private enviaVoto() {
-    console.log(this.voto);
     this.service.postVoto(this.voto).subscribe(
       response => {
-        this.confirmacaoVoto.status = response.Status
-        this.confirmacaoVoto.mensagem = response.Mensagem
+        this.votou = response
+        this.mostrarModal()
+        console.log(this.votou);
       }
     )
+
+
+
+  }
+
+  private mostrarModal(){
+    if (this.votou.status == "200") {
+      Swal.fire({
+
+        icon: 'success',
+
+        title: 'Voto computado com sucesso!',
+
+        text: 'Para acessar o resultado, faça login a partir de ' + this.montaDataFim(),
+
+        showConfirmButton: true
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss) {
+          this.router.navigateByUrl("login");
+        }
+      })
+
+    }else{
+      Swal.fire({
+
+        icon: 'error',
+
+        title: 'Erro ao votar',
+
+        text: this.votou.mensagem,
+
+        showConfirmButton: true
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss) {
+          this.router.navigateByUrl("login");
+        }
+      })
+    }
+
+  }
+
+  private montaDataFim(){
+    let data = new Date(this.config.resp.finalVotacao)
+    return data.getDate() + "/" + data.getMonth() + "/" + data.getFullYear() + " às " + data.getHours() + ":" + data.getMinutes()
   }
 
   private buscaCandidato() {
     let cand: Candidato = {
       nomeCand:"null",
-      numCand: "null"
+      numCand: "null",
+      imgCand: "",
+      descCand: ""
     }
     for (let candidato of this.candidatos) {
       if (candidato.numCand == this.candSelect) {
         cand = candidato
       }
     }
-
     return cand
   }
 
   public atualizaCandSelecionado(){
 
     this.candSelecionado = this.buscaCandidato()
-    console.log(this.candSelecionado);
 
   }
 
   public limpaSelect(){
 
     this.candSelect = ""
+    this.atualizaCandSelecionado()
   }
-
 
 }

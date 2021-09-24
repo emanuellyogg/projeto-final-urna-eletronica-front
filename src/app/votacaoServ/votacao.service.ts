@@ -14,7 +14,7 @@ export class VotacaoService {
   constructor(private httpClient: HttpClient) { }
 
   public getConfig(): Observable<Config>{
-    return this.httpClient.get<Config>(this.urlGet)
+    return this.httpClient.get<Config>(this.urlGet).pipe(take(1))
   }
 
   public postVoto(voto: Voto):Observable<any>{

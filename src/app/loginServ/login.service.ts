@@ -10,6 +10,8 @@ import { Config } from 'models/config.model';
 })
 export class LoginService {
 
+  public userId: string = ""
+
   private url = 'http://localhost:3001/validaUsuario';
 
   constructor(private httpClient: HttpClient) {}
@@ -26,6 +28,12 @@ export class LoginService {
 
   public getConfig(): Observable<Config>{
     return this.httpClient.get<Config>(this.urlGet)
+  }
+
+  // Receber o CPF ou criptografia do usuário logado
+  public receberUser(user: string) {
+    this.userId = user
+    return this.userId
   }
 }
 
