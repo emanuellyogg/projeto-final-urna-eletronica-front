@@ -11,13 +11,13 @@ Este projeto tem como intuíto efetuar o login, votação e visualização dos r
 Sumário
 =======
 
-- [Design Front-End](#design-front-end)
-- [Board do projeto](#board-do-projeto)
-- [Pré requisitos](#pré-requisitos)
-- [Instalando](#instalando)
-  - [Executar local](#executar-local)
-  - [Acessar a aplicação](#acessar-a-aplicação)
-- [Dependências do projeto](#dependências-do-projeto)
+- Design Front-End
+- Board do projeto
+- Pré requisitos
+- Instalando
+  - Executar local
+  - Acessar a aplicação
+- Dependências do projeto
 
 ---
 
