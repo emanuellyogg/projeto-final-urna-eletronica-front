@@ -7,7 +7,7 @@
       </ng-container>
       <div class="col my-auto" id="idDivInputs">
         <ng-container *ngIf="config.resp?.ehAnonima == false">
-          <input class="form-control text-center my-3" type="text" name="nmCPF" id="idCPF" placeholder="000.000.000-00" disabled>
+          <input class="form-control text-center my-3" type="text" name="nmCPF" id="idCPF" disabled value={{cpf}}>
         </ng-container>
         <div class="form-group my-5">
           <label class="text-center p-2 w-100" for="idCandidato ">Selecione a opção desejada:</label>
