@@ -48,7 +48,6 @@ export class VotacaoComponent implements OnInit {
     })
   }
 
-
   public votarEmBranco() {
     let timestamp = new Date()
     this.voto = {
