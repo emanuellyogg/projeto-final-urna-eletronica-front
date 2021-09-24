@@ -55,12 +55,7 @@ export class LoginComponent implements OnInit {
     const user = { nmUser: this.inputUser };
 
     this.service.getUser(user).subscribe((userServer) => {
-      console.log(userServer.id);
       this.user = userServer.id;
-
-      console.log(user);
-
-
       this.validarUser()
     });
 

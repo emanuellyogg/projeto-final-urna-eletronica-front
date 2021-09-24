@@ -66,8 +66,6 @@ export class VotacaoComponent implements OnInit {
       name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
     }
-    console.log(this.voto);
-
     this.enviaVoto()
   }
 
@@ -76,7 +74,6 @@ export class VotacaoComponent implements OnInit {
       response => {
         this.votou = response
         this.mostrarModal()
-        console.log(this.votou);
       }
     )
 
@@ -128,7 +125,6 @@ export class VotacaoComponent implements OnInit {
     }else if(minutos.length == 1){
       minutos = "0" + String(minutos)
     }
-    console.log(minutos.length);
     return `${data.getDate()}/${Number(data.getMonth())+1}/${data.getFullYear()} às ${data.getHours()}:${minutos}h`
   }
 
