@@ -55,7 +55,7 @@ export class VotacaoComponent implements OnInit {
   public votarEmBranco() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "",
+      cpf: "125",
       value: "00",
       name: "branco",
       timestamp: timestamp
@@ -66,7 +66,7 @@ export class VotacaoComponent implements OnInit {
   public votar() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "",
+      cpf: "125",
       value: this.candSelect,
       name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
@@ -90,7 +90,7 @@ export class VotacaoComponent implements OnInit {
   }
 
   private mostrarModal(){
-    if (this.votou.status) {
+    if (this.votou.status == "200") {
       Swal.fire({
 
         icon: 'success',
