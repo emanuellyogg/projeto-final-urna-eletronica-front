@@ -10,7 +10,6 @@ Este projeto tem como intuíto efetuar o login, votação e visualização dos r
 
 Sumário
 =======
-<!--ts-->
 
 - [Design Front-End](#design-front-end)
 - [Board do projeto](#board-do-projeto)
@@ -19,7 +18,6 @@ Sumário
   - [Executar local](#executar-local)
   - [Acessar a aplicação](#acessar-a-aplicação)
 - [Dependências do projeto](#dependências-do-projeto)
-  <!--te-->
 
 ---
 
@@ -45,8 +43,8 @@ npm install -g @angular/cli
 
 ---
 
-Instalando
-==========
+# Instalando
+
 Utilizando nesse formato, as alterações serão executadas automaticamente e refletidas na aplicação.
 
 Para fazer e intalação basta clonar o projeto e dentro da pasta executar o comando:
