@@ -7,6 +7,7 @@ import { Config } from './../../../models/config.model';
 import { Component, OnInit } from '@angular/core';
 import { ThrowStmt } from '@angular/compiler';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-votacao',
@@ -33,7 +34,7 @@ export class VotacaoComponent implements OnInit {
   votou: StatusVoto = {}
   msgVoto: string = ""
 
-  constructor(private service: VotacaoService, private login: LoginService) { }
+  constructor(private service: VotacaoService, private login: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getConfig().subscribe((configServer: Config) => {
@@ -97,9 +98,13 @@ export class VotacaoComponent implements OnInit {
 
         title: 'Voto computado com sucesso!',
 
-        text: 'Para acessar o resultado, faça login a partir de' + this.montaDataFim(),
+        text: 'Para acessar o resultado, faça login a partir de ' + this.montaDataFim(),
 
         showConfirmButton: true
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss) {
+          this.router.navigateByUrl("login");
+        }
       })
 
     }else{
@@ -112,6 +117,10 @@ export class VotacaoComponent implements OnInit {
         text: this.votou.mensagem,
 
         showConfirmButton: true
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss) {
+          this.router.navigateByUrl("login");
+        }
       })
     }
 
