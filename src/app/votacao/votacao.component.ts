@@ -5,8 +5,8 @@ import { Candidato } from './../../../models/candidato.model';
 import { VotacaoService } from './../votacaoServ/votacao.service';
 import { Config } from './../../../models/config.model';
 import { Component, OnInit } from '@angular/core';
-import { ThrowStmt } from '@angular/compiler';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-votacao',
@@ -31,9 +31,8 @@ export class VotacaoComponent implements OnInit {
   }
   cpf: string = ""
   votou: StatusVoto = {}
-  msgVoto: string = ""
 
-  constructor(private service: VotacaoService, private login: LoginService) { }
+  constructor(private service: VotacaoService, private login: LoginService, private router: Router) { }
 
   ngOnInit(): void {
     this.service.getConfig().subscribe((configServer: Config) => {
@@ -44,18 +43,14 @@ export class VotacaoComponent implements OnInit {
           this.temimagem = true
         }
       }
-      this.cpf = ""
+      this.cpf = this.login.userId
     })
-  }
-
-  public colocaPlaceHolderNoCPF() {
-
   }
 
   public votarEmBranco() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "125",
+      cpf: this.cpf,
       value: "00",
       name: "branco",
       timestamp: timestamp
@@ -66,7 +61,7 @@ export class VotacaoComponent implements OnInit {
   public votar() {
     let timestamp = new Date()
     this.voto = {
-      cpf: "125",
+      cpf: this.cpf,
       value: this.candSelect,
       name: this.buscaCandidato().nomeCand,
       timestamp: timestamp
@@ -97,9 +92,13 @@ export class VotacaoComponent implements OnInit {
 
         title: 'Voto computado com sucesso!',
 
-        text: 'Para acessar o resultado, faça login a partir de' + this.montaDataFim(),
+        text: 'Para acessar o resultado, faça login a partir de ' + this.montaDataFim(),
 
         showConfirmButton: true
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss) {
+          this.router.navigateByUrl("login");
+        }
       })
 
     }else{
@@ -112,6 +111,10 @@ export class VotacaoComponent implements OnInit {
         text: this.votou.mensagem,
 
         showConfirmButton: true
+      }).then((result) => {
+        if (result.isConfirmed || result.dismiss) {
+          this.router.navigateByUrl("login");
+        }
       })
     }
 
@@ -146,7 +149,7 @@ export class VotacaoComponent implements OnInit {
   public limpaSelect(){
 
     this.candSelect = ""
+    this.atualizaCandSelecionado()
   }
-
 
 }
