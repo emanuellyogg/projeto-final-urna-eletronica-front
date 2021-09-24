@@ -1,27 +1,84 @@
-# UrnaEletronicaFrontend
+Urna Eletrônica
+=======
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.6.
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)  ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+Software desenvolvido para o projeto final da Academia JAVA: criado um sistema para votação online e apuração dos votos.
+Este projeto tem como intuíto efetuar o login, votação e visualização dos resultados, através de um **dashboard**.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+---
 
-## Running unit tests
+Sumário
+=======
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Design Front-End
+- Board do projeto
+- Pré requisitos
+- Instalando
+  - Executar local
+  - Acessar a aplicação
+- Dependências do projeto
 
-## Running end-to-end tests
+---
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Design Front-End
+================
+O design das telas foi prototipado através do [Figma](https://www.figma.com/). Para visualizar [clique aqui](https://www.figma.com/file/lPDz188R43fcTonhGxGuxC/Vota%C3%A7%C3%A3o?node-id=0%3A1).
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Board do projeto
+================
+Para acessar o board do projeto [clique aqui](https://senju.atlassian.net/jira/software/projects/UE/boards/4).
+
+---
+
+Pré requisitos
+==========
+Instalar o Node.js. Para mais informações de como instalar [clique aqui](https://nodejs.org/en/);
+
+
+Instalar o Angular CLI. Para fazer e intalação basta ter o `npm` instalado, e executar o comando:
+```sh
+npm install -g @angular/cli
+```
+
+---
+
+# Instalando
+
+Utilizando nesse formato, as alterações serão executadas automaticamente e refletidas na aplicação.
+
+Para fazer e intalação basta clonar o projeto: 
+```sh
+git clone https://emanuellyogg@bitbucket.org/emanuellyogg/urna-eletronica-frontend.git
+```
+
+Depois de clonar, dentro da pasta do projeto, executar o comando:
+```sh
+npm install
+```
+
+Executar local
+--------------
+Na pasta raiz do projeto, execute o comando:
+```sh
+ng serve
+```
+
+Acessar a aplicação
+-------------------
+Após rodar a aplicação, a mesma pode ser acessada no endereço: [http://localhost:4200](http://localhost:4200).
+
+---
+Dependências do projeto
+=======================
+| Nome                                                               | Objetivo                             |
+| ------------------------------------------------------------------ | ------------------------------------ |
+| [Bootstrap](https://getbootstrap.com/)                            | Estilização dos componentes                  |
+| [SweetAlert2](https://sweetalert2.github.io/#examples)       | Criar alerts                     |
