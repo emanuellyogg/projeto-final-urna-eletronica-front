@@ -96,11 +96,9 @@ export class LoginComponent implements OnInit {
 
     if (this.horaValida == 'valida') {
       this.router.navigateByUrl("votacao");
-      return
 
     } else if (this.horaValida == 'finalizada') {
       this.router.navigateByUrl("resultado");
-      return
     }
   }
 }

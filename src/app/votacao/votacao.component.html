@@ -43,10 +43,10 @@
             <output id="idOutCandidato" name="nmOutCandidato" for="idNumeroDoCandidato"
               class="my-2 fs-4">{{candSelecionado.nomeCand}}</output><br>
             <ng-container *ngIf="candSelecionado.imgCand != ''">
-              <img class="img-fluid border" src="{{candSelecionado.imgCand}}" id="FotoCandidato">
+              <img class="img-fluid border" src="{{candSelecionado.imgCand}}" id="FotoCandidato" alt="Foto Candidato">
             </ng-container>
             <ng-container *ngIf="candSelecionado.imgCand == ''">
-              <img class="img-fluid border" src="../../assets/img/default_profile.png" id="FotoCandidato">
+              <img class="img-fluid border" src="../../assets/img/default_profile.png" id="FotoCandidato" alt="Foto Candidato">
             </ng-container>
             <ng-container *ngIf="candidatos[0]?.descCand != ''"><p class="text-center">{{candSelecionado.descCand}}</p></ng-container>
           </ng-container>
