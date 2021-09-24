@@ -26,12 +26,11 @@ export class ApuracaoComponent implements OnInit {
 
     for (let i = 0; i < this.votos.length; i++) {
       porcentagem = Number(this.votos[0][3]);
-      if (porcentagem > 51) {
+      if (porcentagem >= 51) {
         this.encerrou = true;
       } else {
         this.encerrou = false;
       }
     }
   }
-
 }
